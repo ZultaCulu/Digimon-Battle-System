@@ -1,7 +1,77 @@
-[gd_scene format=3 uid="uid://bywbqvcx73pjy"]
+[gd_scene load_steps=2 format=3 uid="uid://bywbqvcx73pjy"]
+
+[ext_resource type="Script" uid="uid://t7rbcrtpynbh" path="res://Script/UI/main_ui.gd" id="1_hvcg1"]
 
 [node name="MainUI" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hvcg1")
+metadata/_edit_lock_ = true
+
+[node name="Fight" type="Button" parent="."]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 328.0
+offset_right = 1128.0
+offset_bottom = 367.0
+focus_neighbor_bottom = NodePath("../Move")
+focus_next = NodePath("../Move")
+focus_previous = NodePath("../Flee")
+text = "Fight"
+
+[node name="Move" type="Button" parent="."]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 392.0
+offset_right = 1128.0
+offset_bottom = 431.0
+focus_neighbor_top = NodePath("../Fight")
+focus_neighbor_bottom = NodePath("../Item")
+focus_next = NodePath("../Item")
+focus_previous = NodePath("../Fight")
+text = "Move"
+
+[node name="Item" type="Button" parent="."]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 456.0
+offset_right = 1128.0
+offset_bottom = 495.0
+focus_neighbor_top = NodePath("../Move")
+focus_neighbor_bottom = NodePath("../Defend")
+focus_next = NodePath("../Defend")
+focus_previous = NodePath("../Move")
+text = "Item"
+
+[node name="Defend" type="Button" parent="."]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 520.0
+offset_right = 1128.0
+offset_bottom = 559.0
+focus_neighbor_top = NodePath("../Item")
+focus_neighbor_bottom = NodePath("../Flee")
+focus_next = NodePath("../Flee")
+focus_previous = NodePath("../Item")
+text = "Defend"
+
+[node name="Flee" type="Button" parent="."]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 584.0
+offset_right = 1128.0
+offset_bottom = 623.0
+focus_neighbor_top = NodePath("../Defend")
+focus_next = NodePath("../Fight")
+focus_previous = NodePath("../Defend")
+text = "Flee"
+
+[connection signal="pressed" from="Fight" to="." method="_on_fight_pressed"]
+[connection signal="pressed" from="Move" to="." method="_on_move_pressed"]
+[connection signal="pressed" from="Item" to="." method="_on_item_pressed"]
+[connection signal="pressed" from="Defend" to="." method="_on_defend_pressed"]
+[connection signal="pressed" from="Flee" to="." method="_on_flee_pressed"]
